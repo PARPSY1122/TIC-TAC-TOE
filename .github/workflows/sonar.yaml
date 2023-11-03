@@ -31,12 +31,11 @@ jobs:
         env: 
           DOCKER_CLI_ACI: 1
   deploy:
-    needs: build-analyze-scan
-    runs-on: [self-hosted]
-    steps: 
-
+   needs: build-analyze-scan   
+   runs-on: [self-hosted]
+   steps:
       - name: docker pull image
-        run: docker pull ajayreddy1122/tic-tac-toe:tagname
+        run: docker pull ajayreddy1122/tic-tac-toe:latest
 
-      - name: deploy to a container
-        run: docker run -d --name ticgame -p 3000:3000 ajayreddy1122/tic-tac-toe:tagname
+      - name: Deploy to container
+        run: docker run -d --name game -p 3000:3000 ajayreddy1122/tic-tac-toe:latest
